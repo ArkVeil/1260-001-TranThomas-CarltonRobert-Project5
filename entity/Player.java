@@ -95,7 +95,6 @@ public class Player {
 		//code for moving
 	}
 
-
 	
 	/**
 	 * @return health
@@ -159,5 +158,6 @@ public class Player {
 	{
 		return name;
 	}
+
 
 }

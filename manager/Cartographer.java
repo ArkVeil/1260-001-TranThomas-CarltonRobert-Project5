@@ -15,7 +15,7 @@ package manager;
 import java.util.Random;
 
 /**
- * Enter type purpose here
+ * Creates and generates the dungeon and a visible dungeon map
  *
  * <hr>
  * Date created: Nov 11, 2018
@@ -46,19 +46,31 @@ public class Cartographer
 	}
 
 	/**
-	 * Show the map and player location         
+	 * Updates and displays the map data        
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018
 	 *
 	 * <hr>
 	 */
-	public static void displayMap()
+	public static void updateMap(int playerLocation, int direction)
 	{
 		mapData = "";
+		dungeonData[playerLocation].setOccupied (true);
+		if(playerLocation > 0 && direction == 1)
+		{
+			dungeonData[playerLocation-1].setOccupied (false);
+			dungeonData[playerLocation-1].setExplored (true);
+		}
+		else if(playerLocation < roomCount -1 && direction == 0)
+		{
+			dungeonData[playerLocation+1].setOccupied (false);
+			dungeonData[playerLocation+1].setExplored (true);
+		}
+		
 		for(Room r : dungeonData)
 		{
-			mapData += r.roomIcon;
+			mapData += r.getRoomIcon ( );
 		}
 		
 	}
@@ -87,6 +99,12 @@ public class Cartographer
 			else
 				dungeonData[i] = new Room("PASSAGE", false);
 		}
+		
+	}
+
+	public static void displayMap ( )
+	{
+		// TODO Auto-generated method stub
 		
 	}
 

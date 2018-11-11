@@ -40,38 +40,12 @@ public class Weapon {
 		damage = 1;
 		accuracy = 1.0;
 	}
-
+	
 	public Weapon(String name, int damage, double accuracy)
 	{
 		this.name = name;
 		this.damage = damage;
 		this.accuracy = accuracy;
-	}
-	
-	/**
-	 * @return damage
-	 */
-	public int getDamage ( )
-	{
-		return damage;
-	}
-
-	
-	/**
-	 * @return name
-	 */
-	public String getName ( )
-	{
-		return name;
-	}
-
-	
-	/**
-	 * @return accuracy
-	 */
-	public double getAccuracy ( )
-	{
-		return accuracy;
 	}
 
 

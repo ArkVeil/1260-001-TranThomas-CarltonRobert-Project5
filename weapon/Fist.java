@@ -35,7 +35,7 @@ public class Fist extends Weapon {
 		super();
 		name = "fist";
 		damage = 5;
-		accuracy = 1.0;
+		accuracy = 0.80;
 		
 	}
 
