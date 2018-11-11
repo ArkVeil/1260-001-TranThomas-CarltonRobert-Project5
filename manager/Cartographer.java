@@ -102,10 +102,5 @@ public class Cartographer
 		
 	}
 
-	public static void displayMap ( )
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 }
