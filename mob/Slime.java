@@ -1,6 +1,6 @@
 /**
  * ---------------------------------------------------------------------------
- * File name: Fist.java
+ * File name: Slime.java
  * Project name: 1260-001-TranThomas-CarltonRobert-Project5
  * ---------------------------------------------------------------------------
  * Creator's name and email: Carlton Robert, Carltonr@etsu.edu
@@ -8,18 +8,19 @@
  * Creation Date: Nov 11, 2018
  * ---------------------------------------------------------------------------
  */
-package weapon;
+package mob;
 
 /**
  * 
- * Basic weapon player will always have
+ * Mob slime monster to attack player
+ *
  *
  * <hr>
  * Date created: Nov 11, 2018
  * <hr>
  * @author Carlton Robert
  */
-public class Fist extends Weapon {
+public class Slime extends Monster {
 
 	/**
 	 * 
@@ -28,17 +29,18 @@ public class Fist extends Weapon {
 	 * <hr>
 	 * Date created: Nov 11, 2018 
 	 *
-	 *
+	 * 
+	 * @param health
+	 * @param damage
+	 * @param accuracy
+	 * @param name
 	 */
-	public Fist() {
-		// TODO Auto-generated constructor stub
+	public Slime() {
 		super();
-		name = "fist";
-		damage = 5;
-		accuracy = 1.0;
-		
+		name = "Slime";
+		this.damage = 10;
+		this.health = 10;
+		this.accuracy = 0.25;
 	}
-
-	
 
 }
