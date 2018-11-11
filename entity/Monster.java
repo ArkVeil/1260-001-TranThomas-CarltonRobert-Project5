@@ -44,6 +44,7 @@ public class Monster {
 		this.damage = 0;
 		this.accuracy = 0.0;
 	}
+
 	
 	/**
 	 * @return name
