@@ -25,8 +25,9 @@ package manager;
 public class Room
 {
 	protected RoomType roomType;		//room type @see RoomType.java
-	protected String roomIcon;			//displayable icon for room
+	private String roomIcon;			//displayable icon for room
 	private boolean occupied;			//if player is here
+	private boolean explored;			//if player has been here
 	
 	/**
 	 * Default Constructor of Room   
@@ -45,6 +46,24 @@ public class Room
 		
 	}
 	
+	
+	/**
+	 * @return occupied
+	 */
+	protected boolean isOccupied ( )
+	{
+		return occupied;
+	}
+
+	
+	/**
+	 * @param occupied the occupied to set
+	 */
+	protected void setOccupied (boolean occupied)
+	{
+		this.occupied = occupied;
+	}
+
 	/**
 	 * 
 	 * Parameterized Constructor of Room   
@@ -76,14 +95,17 @@ public class Room
 	 */
 	private String determineIcon()
 	{
-		String emptyRoom = "[ ]";
+		String emptyRoom = "[  ]";
 		String occupiedRoom = "[x]";
+		String exploredRoom = "[e]";
 		
 		String roomState;
 		String icon = "|failed to load|";
 		
 		if(this.occupied)
 			roomState = occupiedRoom;
+		else if(this.explored)
+			roomState = exploredRoom;
 		else
 			roomState = emptyRoom;
 		
@@ -94,4 +116,48 @@ public class Room
 		
 		return icon;
 	}
+
+
+	
+	/**
+	 * @return roomIcon
+	 */
+	protected String getRoomIcon ( )
+	{
+		this.setRoomIcon(this.determineIcon ( ));
+		return roomIcon;
+	}
+
+
+	
+	/**
+	 * @param roomIcon the roomIcon to set
+	 */
+	protected void setRoomIcon (String roomIcon)
+	{
+		this.roomIcon = roomIcon;
+	}
+
+
+	
+	/**
+	 * @return explored
+	 */
+	protected boolean isExplored ( )
+	{
+		return explored;
+	}
+
+
+	
+	/**
+	 * @param explored the explored to set
+	 */
+	protected void setExplored (boolean explored)
+	{
+		this.explored = explored;
+	}
+	
+	
+	
 }
