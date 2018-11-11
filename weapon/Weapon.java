@@ -47,6 +47,32 @@ public class Weapon {
 		this.damage = damage;
 		this.accuracy = accuracy;
 	}
+	
+	/**
+	 * @return damage
+	 */
+	public int getDamage ( )
+	{
+		return damage;
+	}
+
+	
+	/**
+	 * @return name
+	 */
+	public String getName ( )
+	{
+		return name;
+	}
+
+	
+	/**
+	 * @return accuracy
+	 */
+	public double getAccuracy ( )
+	{
+		return accuracy;
+	}
 
 
 }
