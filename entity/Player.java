@@ -91,5 +91,64 @@ public class Player {
 	{
 		//code for moving
 	}
+	
+	
+	/**
+	 * @return health
+	 */
+	public int getHealth ( )
+	{
+		return health;
+	}
+
+
+	
+	/**
+	 * @param health the health to set
+	 */
+	public void setHealth (int health)
+	{
+		this.health = health;
+	}
+
+
+	
+	/**
+	 * @return weapon
+	 */
+	public Weapon getWeapon ( )
+	{
+		return weapon;
+	}
+
+
+	
+	/**
+	 * @param weapon the weapon to set
+	 */
+	public void setWeapon (Weapon weapon)
+	{
+		this.weapon = weapon;
+	}
+
+
+	
+	/**
+	 * @return location
+	 */
+	public int getLocation ( )
+	{
+		return location;
+	}
+
+
+	
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation (int location)
+	{
+		this.location = location;
+	}
 
 }
