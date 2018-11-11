@@ -40,7 +40,7 @@ public class Slime extends Monster {
 		name = "Slime";
 		this.damage = 10;
 		this.health = 10;
-		this.accuracy = 0.25;
+		this.accuracy = 1;
 	}
 
 }

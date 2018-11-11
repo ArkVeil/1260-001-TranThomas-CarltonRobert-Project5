@@ -38,7 +38,6 @@ public class Player {
 	 *
 	 */
 	public Player() {
-		// TODO Auto-generated constructor stub
 		health = 100;
 		weapon = new Weapon();
 		location = 1;
@@ -90,9 +89,12 @@ public class Player {
 	 * @param direction
 	 * @param mapSize
 	 */
-	public void move(String direction, int mapSize)
+	public void move(String direction)
 	{
-		//code for moving
+		if(direction.equalsIgnoreCase ("Left"))
+			location--;
+		else if(direction.equalsIgnoreCase ("Right"))
+			location++;
 	}
 
 	

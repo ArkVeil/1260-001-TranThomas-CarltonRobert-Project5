@@ -20,33 +20,59 @@ package weapon;
  * @author Carlton Robert
  */
 public class Weapon {
-	
-	protected String name;
-	protected int damage;
-	protected double accuracy;
+    
+    protected String name;
+    protected int damage;
+    protected double accuracy;
 
-	/**
-	 * 
-	 * Constructor        
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018 
-	 *
-	 *
-	 */
-	public Weapon() {
-		// TODO Auto-generated constructor stub
-		name = "fist";
-		damage = 1;
-		accuracy = 1.0;
-	}
-	
-	public Weapon(String name, int damage, double accuracy)
-	{
-		this.name = name;
-		this.damage = damage;
-		this.accuracy = accuracy;
-	}
+    /**
+     * 
+     * Constructor        
+     *
+     * <hr>
+     * Date created: Nov 11, 2018 
+     *
+     *
+     */
+    public Weapon() {
+        // TODO Auto-generated constructor stub
+        name = "fist";
+        damage = 1;
+        accuracy = 1.0;
+    }
+
+    public Weapon(String name, int damage, double accuracy)
+    {
+        this.name = name;
+        this.damage = damage;
+        this.accuracy = accuracy;
+    }
+    
+    /**
+     * @return damage
+     */
+    public int getDamage ( )
+    {
+        return damage;
+    }
+
+    
+    /**
+     * @return name
+     */
+    public String getName ( )
+    {
+        return name;
+    }
+
+    
+    /**
+     * @return accuracy
+     */
+    public double getAccuracy ( )
+    {
+        return accuracy;
+    }
 
 
 }
