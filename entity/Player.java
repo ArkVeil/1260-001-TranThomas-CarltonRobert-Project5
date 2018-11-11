@@ -23,7 +23,6 @@ import weapon.Weapon;
  */
 public class Player {
 	
-	private String name;
 	private int health;
 	private Weapon weapon;
 	private int location;
@@ -42,7 +41,6 @@ public class Player {
 		health = 100;
 		weapon = new Weapon();
 		location = 1;
-		name = "Adventurer";
 	}
 	
 	
@@ -57,12 +55,11 @@ public class Player {
 	 * @param weapon
 	 * @param location
 	 */
-	public Player(int health, Weapon weapon, int location, String name)
+	public Player(int health, Weapon weapon, int location)
 	{
 		this.health = health;
 		this.weapon = weapon;
 		this.location = location;
-		this.name = name;
 	}
 	
 	
@@ -93,71 +90,6 @@ public class Player {
 	public void move(String direction, int mapSize)
 	{
 		//code for moving
-	}
-
-
-	
-	/**
-	 * @return health
-	 */
-	public int getHealth ( )
-	{
-		return health;
-	}
-
-
-	
-	/**
-	 * @param health the health to set
-	 */
-	public void setHealth (int health)
-	{
-		this.health = health;
-	}
-
-
-	
-	/**
-	 * @return weapon
-	 */
-	public Weapon getWeapon ( )
-	{
-		return weapon;
-	}
-
-
-	
-	/**
-	 * @param weapon the weapon to set
-	 */
-	public void setWeapon (Weapon weapon)
-	{
-		this.weapon = weapon;
-	}
-
-
-	
-	/**
-	 * @return location
-	 */
-	public int getLocation ( )
-	{
-		return location;
-	}
-
-
-	
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation (int location)
-	{
-		this.location = location;
-	}
-	
-	public String getName()
-	{
-		return name;
 	}
 
 }
