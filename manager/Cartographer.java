@@ -15,7 +15,7 @@ package manager;
 import java.util.Random;
 
 /**
- * Enter type purpose here
+ * Creates and generates the dungeon and a visible dungeon map
  *
  * <hr>
  * Date created: Nov 11, 2018
