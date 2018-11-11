@@ -8,13 +8,16 @@
  * Creation Date: Nov 11, 2018
  * ---------------------------------------------------------------------------
  */
-
 package manager;
 
 import javax.swing.JOptionPane;
 
+import entity.*;
+import weapon.*;
+
+
 /**
- * Enter type purpose here
+ * Output the Zork game
  *
  * <hr>
  * Date created: Nov 11, 2018
@@ -23,6 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class ZorkDriver
 {
+
 	/**
 	 * Enter method description here         
 	 *
@@ -34,6 +38,23 @@ public class ZorkDriver
 	 */
 	public static void main (String [ ] args)
 	{
+
+		Weapon wpn = new Fist();
+		Player player = new Player(100, wpn, 1, "Adventurer");
+		Monster mon = new Slime();
+		
+		DungeonMaster dm = new DungeonMaster();
+		// TODO Auto-generated method stub
+		boolean bp = dm.combat (player, mon);
+		if(bp)
+		{
+			System.out.println (player.getName() + "\\" + player.getHealth ( ) + "\\" + mon.getHealth ( ));
+		}
+		else
+		{
+			System.out.println (mon.getName ( ) + "\\" + mon.getHealth ( ) + "\\" + player.getHealth ( ) + bp);
+		}
+		
 		boolean gameRun = true;			//tracks if the game is running
 		int directionButton = 2;
 		int quitButton = 0;
