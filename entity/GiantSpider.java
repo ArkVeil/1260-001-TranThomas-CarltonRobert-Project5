@@ -40,7 +40,7 @@ public class GiantSpider extends Monster {
 		name = "Giant Spider";
 		this.damage = 10;
 		this.health = 10;
-		this.accuracy = 0.25;
+		this.accuracy = 0.50;
 	}
 
 }

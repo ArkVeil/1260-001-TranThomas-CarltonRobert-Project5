@@ -43,7 +43,7 @@ public class BlackSnake extends Monster
 		name = "Black Snake";
 		this.damage = 10;
 		this.health = 10;
-		this.accuracy = 0.25;
+		this.accuracy = 0.50;
 	}
 
 }

@@ -11,8 +11,9 @@
 package manager;
 
 import java.util.Random;
-import entity.Monster;
-import entity.Player;
+import javax.swing.JOptionPane;
+import entity.*;
+import weapon.*;
 
 
 /**
@@ -23,28 +24,113 @@ import entity.Player;
  * <hr>
  * @author Carlton Robert
  */
-public class DungeonMaster {
-
-	private String map;
-	private int mapSize;
-	
+public class DungeonMaster 
+{
+	protected static boolean dead = false;
 	/**
 	 * 
-	 * Constructor        
+	 * Main game play loop; tracks whether the game is still running and initiates combat if needed          
 	 *
 	 * <hr>
-	 * Date created: Nov 11, 2018 
+	 * Date created: Nov 11, 2018
+	 * Last Modified: Nov 11, 2018
 	 *
-	 *
+	 * <hr>
 	 */
-	public DungeonMaster() {
-		// TODO Auto-generated constructor stub
-		map = "";
-		mapSize = 0;
-	}
+	public static void runPlayLoop()
+	{
+		Random randomEncounter = new Random();			//random generator
+		boolean gameRun = true;			//tracks if the game is running
+		int mobSpawn = 0;					//tracks what mob was spawned
+		int directionButton = 2;		//player movement input
+		int quitButton = 0;				//tracks if player wants to quit
+		
+		Weapon[] armory = {	new Fist(),
+							new Stick(),
+							new Sword(),
+							new Scimitar()};		//list of available weapons
+		
+		Monster[] mob = {	new BlackSnake(),
+							new GiantSpider(),
+							new Slime()};			//list of available monsters
+		
+		String[] movement = {"Left", "Right"};		//movement buttons
+		String[] quit = {"Yes", "No"};				//quit buttons
+		
+		Player player = new Player(100, armory[0], 0, "Adventurer");
+		
+		Cartographer.generateMap();
 	
+		while(gameRun)
+		{
+			Cartographer.updateMap (player.getLocation ( ),directionButton);
+			directionButton = JOptionPane.showOptionDialog (null, 
+											Cartographer.mapData+ "\n\n", 
+											"Where do you want to go",
+											JOptionPane.PLAIN_MESSAGE,
+											JOptionPane.DEFAULT_OPTION,
+											null, 
+											movement,
+											0);
+			
+			//determines movement
+			switch(directionButton)
+			{
+				case 0:
+					if(player.getLocation ( ) != 0)
+						player.move (movement[directionButton]);
+					else
+						JOptionPane.showMessageDialog (null, "You can't go that way", null, JOptionPane.PLAIN_MESSAGE);
+					break;
+				case 1:
+					if(player.getLocation ( ) < Cartographer.roomCount-1)
+						player.move (movement[directionButton]);
+					else
+					{
+						JOptionPane.showMessageDialog (null, "You have escaped and completed the dungeon!", null, JOptionPane.PLAIN_MESSAGE);
+						gameRun = false;
+					}
+					break;
+				default:
+					 quitButton = JOptionPane.showOptionDialog (null, 
+						 "Are you sure you want to quit?", 
+						null,
+						JOptionPane.PLAIN_MESSAGE,
+						JOptionPane.DEFAULT_OPTION,
+						null, 
+						quit,
+						0);
+					 switch(quitButton)
+					 {
+						 case 0:
+							 JOptionPane.showMessageDialog (null, 
+								 	"Goodbye, thank you for playing\nBy Thomas Tran and Robert Carlton",
+									":(",
+									JOptionPane.PLAIN_MESSAGE);
+							 System.exit (-1);
+						 case 1:
+						 default:
+							 break; 
+					 }//end switch(quitButton)
+			}//end switch(directionButton)
+			
+			if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
+			{
+				if(randomEncounter.nextInt (10000) < 10000)
+				{
+					mobSpawn = randomEncounter.nextInt(mob.length);
+					System.out.println ("A " + mob[mobSpawn] + " stands before you");
+					System.out.print (combat(player, mob[mobSpawn]));
+				}
+			}
+			
+			
+		}//end while(gamerun)
+		
+	}//end runPlayLoop()
+
 	/**
-	 * Holds player combat with enemy         
+	 * Holds player combat with enemy;       
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018
@@ -53,74 +139,51 @@ public class DungeonMaster {
 	 * @param player
 	 * @param mob
 	 */
-	public Boolean combat(Player player, Monster mob)
+	public static String combat(Player player, Monster mob)
 	{
 		Random ran = new Random();
 		Boolean fighting = true;
-		int tempHealthPlayer = player.getHealth ( );
+		String combatLog = "\n";
+		int tempPlayerHealth = player.getHealth ( );
 		int tempEnemyHealth = mob.getHealth ( );
+		int playerDmg =  player.getWeapon ( ).getDamage ( );
+		int mobDmg = mob.getDamage ( );
 		
 		while(fighting)
 		{
-			//enemy takes damage
-			if(tempEnemyHealth > 0 && tempHealthPlayer > 0 )
+			//player attacks
+			if ( ran.nextInt(10000) < player.getWeapon().getAccuracy() * 10000)
 			{
-				double chance = (ran.nextDouble ( ));
-				if(chance <= mob.getAccuracy ( ))
-				{
-					tempEnemyHealth = ((mob.getHealth ( ) - player.getWeapon().getDamage ()));
-					mob.setHealth (tempEnemyHealth);
-				}
+				combatLog += "You hit for " + playerDmg +" damage\n";
+				tempEnemyHealth -= playerDmg; 
 			}
 			else
+				combatLog += "You miss!\n";
+			
+			//monster attacks
+			if ( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
 			{
-				return false;
-			}
-			//player takes damage
-			if(tempEnemyHealth > 0 && tempHealthPlayer > 0)
-			{
-				double chance = (ran.nextDouble ( ));
-				if(chance <= player.getWeapon ( ).getAccuracy ( ))
-				{
-					tempHealthPlayer = (player.getHealth ( ) - mob.getDamage ( ));
-					player.setHealth (tempHealthPlayer);
-				}
+				combatLog += "The " + mob.getName ( ) + " hits you for " + mobDmg +" damage\n";
+				tempPlayerHealth -= mobDmg;
 			}
 			else
+				combatLog += "The " + mob.getName ( ) + " misses!\n";
+				
+			if(tempPlayerHealth <= 0)
 			{
-				return true;
+				dead = true;
+				combatLog = "\tGAME OVER\nYou have died";
+				fighting = false;
+			}
+			else if(tempEnemyHealth <= 0)
+			{
+				combatLog += "\nYou have defeated the " + mob.getName ( ) + " with " + tempPlayerHealth + " HP remaining!";
+				player.setHealth (tempPlayerHealth);
+				fighting = false;
 			}
 		}
 		
-		return null;
-
-	}
-	
-	
-	/**
-	 * Generates map         
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018
-	 *
-	 * <hr>
-	 */
-	public void generateMap()
-	{
-		//code	
-	}
-	
-	/**
-	 * Show the map and player location         
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018
-	 *
-	 * <hr>
-	 */
-	public void displayMap()
-	{
 		
+		return combatLog;
 	}
-
 }

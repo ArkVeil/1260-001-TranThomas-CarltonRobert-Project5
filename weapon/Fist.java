@@ -31,7 +31,6 @@ public class Fist extends Weapon {
 	 *
 	 */
 	public Fist() {
-		// TODO Auto-generated constructor stub
 		super();
 		name = "fist";
 		damage = 5;
