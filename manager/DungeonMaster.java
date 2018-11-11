@@ -55,6 +55,34 @@ public class DungeonMaster {
 	public void combat(Player player, Monster mob)
 	{
 		///combat code;
+		Random ran = new Random();
+		Boolean fighting = true;
+		Boolean won = false;
+		int tempHealthPlayer = player.getHealth ( );
+		int tempEnemyHealth = mob.getHealth ( );
+		while(fighting)
+		{
+			if(tempEnemyHealth >= 0 && tempHealthPlayer >= 0 && (ran.nextDouble() < mob.getAccuracy ( )))
+			{
+				tempEnemyHealth = (int) ((mob.getHealth ( ) - player.getWeapon().getDamage ()) / mob.getAccuracy ( ));
+				mob.setHealth (tempEnemyHealth);
+				if(tempEnemyHealth >= 0 && tempHealthPlayer >= 0 && (ran.nextDouble ( ) < player.getWeapon ( ).getAccuracy ( )))
+				{
+					tempHealthPlayer = (player.getHealth ( ) - mob.getDamage ( ));
+					player.setHealth (tempHealthPlayer);
+				}
+				else
+				{
+					return true;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		return null;
 	}
 
 }
