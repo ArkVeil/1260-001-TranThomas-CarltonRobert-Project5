@@ -41,9 +41,9 @@ public class BlackSnake extends Monster
 
 		super();
 		name = "Black Snake";
-		this.damage = 10;
-		this.health = 10;
-		this.accuracy = 0.50;
+		this.damage = 35;
+		this.health = 20;
+		this.accuracy = 0.55;
 	}
 
 }
