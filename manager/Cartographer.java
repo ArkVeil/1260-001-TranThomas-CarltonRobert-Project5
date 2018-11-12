@@ -39,7 +39,7 @@ public class Cartographer
 	 */
 	public static void updateMap()
 	{
-		mapData = "";
+		mapData = "";		//Holder for the data of the map
 		for(Room r: dungeonData)
 		{
 			mapData += r.getRoomIcon ( );
@@ -57,10 +57,10 @@ public class Cartographer
 	 */
 	public static void generateMap()
 	{
-		Random roomCounter = new Random();
+		Random roomCounter = new Random();		//The instance of a room
 		
-		roomCount = roomCounter.nextInt (6) + 5;
-		dungeonData = new Room[roomCount];
+		roomCount = roomCounter.nextInt (6) + 5;	//Max counter for the rooms
+		dungeonData = new Room[roomCount];		//Holder the data for the dungeon
 		
 		for(int i = 0; i < roomCount ; i++)
 		{
