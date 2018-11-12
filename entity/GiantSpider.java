@@ -19,8 +19,10 @@ package entity;
  * <hr>
  * @author Carlton Robert
  */
-public class GiantSpider extends Monster {
-
+public class GiantSpider extends Participant
+{
+	public int damage;			//monster damage
+	public double accuracy;		//monster hit rate
 	/**
 	 * 
 	 * Default Constructor of GiantSpider   
@@ -33,7 +35,25 @@ public class GiantSpider extends Monster {
 	 */
 	public GiantSpider() 
 	{
-		super("Giant Spider", 10, 10, 0.50);
+		super("Giant Spider", 10);
+		this.damage = 10;
+		this.accuracy = 50;
+	}
+	
+	/**
+	 * @return damage
+	 */
+	public int getDamage ( )
+	{
+		return damage;
+	}
+	
+	/**
+	 * @return accuracy
+	 */
+	public double getAccuracy ( )
+	{
+		return accuracy;
 	}
 
 }

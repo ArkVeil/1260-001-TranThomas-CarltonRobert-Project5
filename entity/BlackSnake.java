@@ -19,8 +19,11 @@ package entity;
  * <hr>
  * @author Carlton Robert
  */
-public class BlackSnake extends Monster 
+public class BlackSnake extends Participant 
 {
+	public int damage;			//monster damage
+	public double accuracy;		//monster hit rate
+	
 	/**
 	 * 
 	 * Default Constructor of BlackSnake   
@@ -33,7 +36,27 @@ public class BlackSnake extends Monster
 	 */
 	public BlackSnake() 
 	{
-		super("Black Snake", 20, 35, 0.55);
+		super("Black Snake", 20);
+		this.damage = 35;
+		this.accuracy = 55;
+	}
+
+	
+	/**
+	 * @return damage
+	 */
+	public int getDamage ( )
+	{
+		return damage;
+	}
+
+	
+	/**
+	 * @return accuracy
+	 */
+	public double getAccuracy ( )
+	{
+		return accuracy;
 	}
 
 }

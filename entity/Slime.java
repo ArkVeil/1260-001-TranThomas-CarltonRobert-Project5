@@ -20,8 +20,11 @@ package entity;
  * <hr>
  * @author Carlton Robert
  */
-public class Slime extends Monster {
+public class Slime extends Participant
+{
 
+	public int damage;			//monster damage
+	public double accuracy;		//monster hit rate
 	/**
 	 * 
 	 * Default Constructor of Slime   
@@ -34,7 +37,25 @@ public class Slime extends Monster {
 	 */
 	public Slime() 
 	{
-		super("Slime", 90, 20, 0.45);
+		super("Slime", 50);
+		this.damage = 10;
+		this.accuracy = 100;
+	}
+	
+	/**
+	 * @return damage
+	 */
+	public int getDamage ( )
+	{
+		return damage;
+	}
+	
+	/**
+	 * @return accuracy
+	 */
+	public double getAccuracy ( )
+	{
+		return accuracy;
 	}
 
 }

@@ -19,7 +19,7 @@ package weapon;
  * <hr>
  * @author Carlton Robert
  */
-public class Weapon {
+public abstract class Weapon {
     
     protected String name;				//name of weapon
     protected int damage;				//weapon's damage
@@ -27,7 +27,7 @@ public class Weapon {
 
     /**
      * 
-     * Constructor        
+     * Default Constructor        
      *
      * <hr>
      * Date created: Nov 11, 2018 
@@ -36,9 +36,9 @@ public class Weapon {
      */
     public Weapon() 
     {
-        this.name = "fist";
+        this.name = "Fist";
         this.damage = 1;
-        this.accuracy = 1.0;
+        this.accuracy = 100;
     }
 
     /**

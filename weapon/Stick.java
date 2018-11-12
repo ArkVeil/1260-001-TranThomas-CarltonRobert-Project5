@@ -30,12 +30,9 @@ public class Stick extends Weapon {
 	 *
 	 *
 	 */
-	public Stick() {
-		// TODO Auto-generated constructor stub
-		super();
-		name = "Stick";
-		damage = 8;
-		accuracy = 0.75;
+	public Stick(){
+		super("Stick", 8, 75);
+
 	}
 
 }

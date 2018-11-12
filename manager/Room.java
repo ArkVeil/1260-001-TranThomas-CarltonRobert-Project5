@@ -14,7 +14,7 @@ package manager;
 
 
 /**
- * Enter type purpose here
+ * Individual rooms of dungeon
  *
  * <hr>
  * Date created: Nov 11, 2018
@@ -56,7 +56,9 @@ public class Room
 	 * Last Modified: Nov 11, 2018
 	 *
 	 * 
-	 * @param roomType
+	 * @param roomType - type of room
+	 * @param occupied - player is currently here
+	 * @param explored - player was here
 	 */
 	public Room(String roomType, boolean occupied, boolean explored)
 	{
@@ -96,12 +98,12 @@ public class Room
 	 */
 	private String determineIcon()
 	{
-		String emptyRoom = "[  ]";
-		String occupiedRoom = "[x]";
-		String exploredRoom = "[e]";
+		String emptyRoom = "[  ]";			//empty Room icon
+		String occupiedRoom = "[x]";		//occupied Room icon
+		String exploredRoom = "[e]";		//explored Room icon
 		
-		String roomState;
-		String icon = "|failed to load|";
+		String roomState;					//holds what the room state is
+		String icon = "|failed to load|";	//completed room icon
 		
 		if(this.occupied)
 			roomState = occupiedRoom;

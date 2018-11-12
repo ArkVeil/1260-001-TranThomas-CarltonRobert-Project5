@@ -3,8 +3,8 @@
  * File name: ZorkDriver.java
  * Project name: 1260-001-TranThomas-CarltonRobert-Project5
  * ---------------------------------------------------------------------------
- * Creator's name and email: Carlton Robert, Carltonr@etsu.edu
- * Course:  CSCI 1260
+ * Creator's name and email: Thomas Tran, trantt@etsu.edu
+ * Course:  CSCI 1260-001
  * Creation Date: Nov 11, 2018
  * ---------------------------------------------------------------------------
  */
@@ -38,7 +38,7 @@ public class ZorkDriver
 	 */
 	public static void main (String [ ] args)
 	{
-		Random dice = new Random();
+		Random dice = new Random();							//random number generator
 		String[] movement = {"Left", "Right"};				//movement buttons
 		String[] quit = {"Yes", "No"};						//quit buttons
 		String[] fight = {"Fight", "Roll over and Die"};	//Fight buttons
@@ -46,9 +46,10 @@ public class ZorkDriver
 		
 		Weapon[] armory = {	new Stick(),
 							new Sword(),
-							new Scimitar()};			//list of available weapons to be found
+							new Scimitar(),
+							new StarCannon()};			//list of available weapons to be found
 		
-		Monster[] mob = {	new BlackSnake(),
+		Participant[] mob = {	new BlackSnake(),
 							new GiantSpider(),
 							new Slime()};				//list of available monsters
 		
@@ -58,7 +59,7 @@ public class ZorkDriver
 		int playerChoice = 0;					//tracks player choice; generic for weapon and fights
 		int quitButton = 0;						//tracks if player wants to quit
 		
-		String eventLog = "";
+		String eventLog = "";					//String output of ongoing events
 		
 		Player player = new Player("Adventurer", 100, new Fist(), 0); //Player Entity
 		
@@ -147,10 +148,9 @@ public class ZorkDriver
 			
 			if(eventLog.equals ("Mob"))
 			{
-				int mobSpawn = dice.nextInt(mob.length);
+				int mobSpawn = dice.nextInt(mob.length);		//ordinal of mob spawned
+				
 				eventLog = "A " + mob[mobSpawn].getName ( ) + " stands before you";
-			
-
 				playerChoice = JOptionPane.showOptionDialog (null, 
 								eventLog, 
 								"A monster found you!",
@@ -166,19 +166,35 @@ public class ZorkDriver
 						break;
 					case 1:
 						eventLog =  "\tGAME OVER\nYou have died\nProgrammed by Thomas Tran and Robert Carlton";
-						DungeonMaster.dead=true;
+						JOptionPane.showMessageDialog (null, 
+							eventLog
+							,null, 
+							JOptionPane.PLAIN_MESSAGE);
+						System.exit (-1);
 						break;
 					default:
 						eventLog =  "\tGAME OVER\nYou tried to escape but was caught \nProgrammed by Thomas Tran and Robert Carlton";
-						DungeonMaster.dead=true;
+						JOptionPane.showMessageDialog (null, 
+							eventLog
+							,null, 
+							JOptionPane.PLAIN_MESSAGE);
+						System.exit (-1);
 
 				}
 				JOptionPane.showMessageDialog (null, 
 							eventLog
 							,null, 
 							JOptionPane.PLAIN_MESSAGE);
+				
 				if(DungeonMaster.dead==true)
+				{
+					eventLog =  "\tGAME OVER\nYou have died\nProgrammed by Thomas Tran and Robert Carlton";
+					JOptionPane.showMessageDialog (null, 
+						eventLog
+						,null, 
+						JOptionPane.PLAIN_MESSAGE);
 					System.exit (-1);
+				}
 			}
 			
 		}//end while(alive/dungeon uncleared)
@@ -187,8 +203,6 @@ public class ZorkDriver
 			" Thanks for playing!\nProgrammed by Thomas Tran and Robert Carlton",
 			"CONGRATULATIONS",
 			JOptionPane.PLAIN_MESSAGE);
-		
-		
 	}
 
 }

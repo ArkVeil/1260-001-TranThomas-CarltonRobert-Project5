@@ -29,13 +29,15 @@ public class DungeonMaster
 	
 	/**
 	 * 
-	 * Main game play loop; tracks whether the game is still running and initiates combat if needed          
+	 * Checks if weapon spawned in new room      
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018
 	 * Last Modified: Nov 11, 2018
 	 *
 	 * <hr>
+	 * @param player - player entity
+	 * @return eventLog
 	 */
 	public static String checkForWeapon(Player player)
 	{
@@ -52,25 +54,37 @@ public class DungeonMaster
 		}
 		return eventLog;
 	}
-		
+	
+	/**
+	 * 
+	 * Checks if monster spawned in new room       
+	 *
+	 * <hr>
+	 * Date created: Nov 11, 2018
+	 * Last Modified: Nov 11, 2018
+	 *
+	 * <hr>
+	 * @param player - player entity
+	 * @return eventLog
+	 */
 	public static String checkForMob(Player player)
+	{
+		Random randomEncounter = new Random();	//random generator
+		
+		String eventLog = "";					//Event output
+				
+		if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
 		{
-			Random randomEncounter = new Random();	//random generator
-			
-			String eventLog = "";					//Event output
-					
-			if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
+
+			if(randomEncounter.nextInt (10000) < 5000)
 			{
-
-				if(randomEncounter.nextInt (10000) < 5000)
-				{
-					eventLog = "Mob";
-				}
-
+				eventLog = "Mob";
 			}
 
+		}
+
 		return eventLog;
-	}//end runPlayLoop()
+	}
 
 	/**
 	 * Holds player combat with enemy;       
@@ -82,22 +96,25 @@ public class DungeonMaster
 	 * @param player - player entity
 	 * @param mob - player's opponent
 	 */
-	public static String combat(Player player, Monster mob)
+	public static String combat(Player player, Participant mob)
 	{
-		Random ran = new Random();
-		Boolean fighting = true;
-		String combatLog = "\n";
-		int tempPlayerHealth = player.getHealth ( );
-		int tempEnemyHealth = mob.getHealth ( );
-		int playerDmg =  player.getWeapon ( ).getDamage ( );
-		int mobDmg = mob.getDamage ( );
+		Random ran = new Random();				//random number generator
+		
+		Boolean fighting = true;				//test if still fighting
+		String combatLog = "\n";				//results of combat
+		
+		int tempPlayerHealth = player.getHealth ( );			//player health value
+		int tempEnemyHealth = mob.getHealth ( );				//mob health value
+		int playerDmg =  player.getWeapon ( ).getDamage ( );	//player damage
+		int mobDmg = mob.getDamage ( );							//mob damage
 		
 		if(player.getHealth ( ) <= 0)
 			fighting = false;
+		
 		while(fighting)
 		{
 			//player attacks
-			if ( ran.nextInt(10000) < player.getWeapon().getAccuracy() * 10000)
+			if ( ran.nextInt(10000) < player.getWeapon().getAccuracy() * 100)
 			{
 				combatLog += "You hit for " + playerDmg +" damage\n";
 				tempEnemyHealth -= playerDmg; 
@@ -112,7 +129,7 @@ public class DungeonMaster
 				break;
 			}
 			//monster attacks
-			if ( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
+			if ( ran.nextInt(10000) < mob.getAccuracy ( ) * 100)
 			{
 				combatLog += "The " + mob.getName ( ) + " hits you for " + mobDmg +" damage\n";
 				tempPlayerHealth -= mobDmg;
@@ -123,7 +140,7 @@ public class DungeonMaster
 			if(tempPlayerHealth <= 0)
 			{
 				dead = true;
-				combatLog = "\tGAME OVER\nYou have died\nProgrammed by Thomas Tran and Robert Carlton";
+				combatLog += "\nYou have been defeated by the " + mob.getName ( );
 				fighting = false;
 			}
 			else if(tempEnemyHealth <= 0)
@@ -137,6 +154,19 @@ public class DungeonMaster
 		
 	}
 	
+	/**
+	 * 
+	 * Movement command; moves player around dungeon and updates the rooms     
+	 *
+	 * <hr>
+	 * Date created: Nov 11, 2018
+	 * Last Modified: Nov 11, 2018
+	 *
+	 * <hr>
+	 * @param player - player entity
+	 * @param direction - direction of movement
+	 * @return results of movement
+	 */
 	public static String move(Player player, int direction)
 	{
 		String[] movement = {"Left", "Right"};			//Available Movements

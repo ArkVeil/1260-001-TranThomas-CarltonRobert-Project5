@@ -33,7 +33,7 @@ public class Fist extends Weapon {
 	 */
 	public Fist() 
 	{
-		super("Fist", 5, 0.80);
+		super("Fist", 5, 80);
 	}
 
 	

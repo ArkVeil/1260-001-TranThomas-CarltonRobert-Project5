@@ -26,8 +26,8 @@ import java.util.Random;
 public class Cartographer
 {
 	protected static Room[] dungeonData;			//contains the cell data of the dungeon
-	protected static String mapData;					//contains the icons of each room
-	protected static int roomCount;
+	protected static String mapData;				//contains the icons of each room
+	protected static int roomCount;					//total rooms in dungeon
 	
 	/**
 	 * Updates and displays the map data        
@@ -73,6 +73,5 @@ public class Cartographer
 		}
 		
 	}
-
 
 }

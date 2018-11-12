@@ -22,7 +22,7 @@ package entity;
  * <hr>
  * @author Thomas Tran
  */
-public class Participant
+public abstract class Participant
 {
 	public String name;		//name of Participant
 	public int health;		//Participant health
@@ -91,5 +91,23 @@ public class Participant
 	{
 		this.health = health;
 	}
+
+	/**
+	 * @return damage
+	 */
+	public int getDamage ( )
+	{
+		return 0;
+	}
+
+	
+	/**
+	 * @return accuracy
+	 */
+	public double getAccuracy ( )
+	{
+		return 0;
+	}
+
 
 }
