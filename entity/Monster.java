@@ -43,7 +43,7 @@ public class Monster {
 		this.health = 1;
 		this.damage = 0;
 		this.accuracy = 0.0;
-	}
+	}//end of Monster()
 	
 	/**
 	 * @return name
@@ -51,7 +51,7 @@ public class Monster {
 	public String getName ( )
 	{
 		return name;
-	}
+	}//end of getName()
 
 	
 	/**
@@ -60,7 +60,7 @@ public class Monster {
 	public void setName (String name)
 	{
 		this.name = name;
-	}
+	}//end of setName (String name)
 
 	
 	/**
@@ -69,7 +69,7 @@ public class Monster {
 	public int getHealth ( )
 	{
 		return health;
-	}
+	}//end of getHealth()
 
 	
 	/**
@@ -78,7 +78,7 @@ public class Monster {
 	public void setHealth (int health)
 	{
 		this.health = health;
-	}
+	}//end of setHealth (int health)
 
 	
 	/**
@@ -87,7 +87,7 @@ public class Monster {
 	public int getDamage ( )
 	{
 		return damage;
-	}
+	}//end of getDamage ( )
 
 	
 	/**
@@ -96,7 +96,7 @@ public class Monster {
 	public void setDamage (int damage)
 	{
 		this.damage = damage;
-	}
+	}//end of setDamage (int damage)
 
 	
 	/**
@@ -105,7 +105,7 @@ public class Monster {
 	public double getAccuracy ( )
 	{
 		return accuracy;
-	}
+	}//end of double getAccuracy ( )
 
 	
 	/**
@@ -114,6 +114,6 @@ public class Monster {
 	public void setAccuracy (double accuracy)
 	{
 		this.accuracy = accuracy;
-	}
+	}//end of setAccuracy(double accuracy)
 
-}
+}//end of Monster()

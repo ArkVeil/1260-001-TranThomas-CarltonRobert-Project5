@@ -42,7 +42,7 @@ public class Player {
 		weapon = new Weapon();
 		location = 1;
 		name = "Adventurer";
-	}
+	}//end of Player()
 	
 	
 	/**
@@ -144,7 +144,7 @@ public class Player {
 	public int getLocation ( )
 	{
 		return location;
-	}
+	}//end of getLocation()
 
 
 	
@@ -154,12 +154,12 @@ public class Player {
 	public void setLocation (int location)
 	{
 		this.location = location;
-	}
+	}//end of setLocation(int location)
 	
 	public String getName()
 	{
 		return name;
-	}
+	}//end of getName()
 
 
-}
+}//end of Player()

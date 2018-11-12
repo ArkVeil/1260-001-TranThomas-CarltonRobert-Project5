@@ -44,6 +44,7 @@ public class BlackSnake extends Monster
 		this.damage = 35;
 		this.health = 20;
 		this.accuracy = 0.55;
-	}
+	}//end BlackSnake()
+	
 
-}
+}//end BlackSnake()

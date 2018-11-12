@@ -41,6 +41,7 @@ public class GiantSpider extends Monster {
 		this.damage = 10;
 		this.health = 10;
 		this.accuracy = 0.50;
-	}
+	}//end of GiantSpider()
 
-}
+
+}//end of GiantSpider()
