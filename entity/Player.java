@@ -20,6 +20,8 @@ import weapon.*;
  * Date created: Nov 11, 2018
  * <hr>
  * @author Carlton Robert
+ *@param weapon
+ *@param location
  */
 public class Player extends Participant
 {
