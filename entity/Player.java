@@ -10,7 +10,7 @@
  */
 package entity;
 
-import weapon.Weapon;
+import weapon.*;
 
 /**
  * 
@@ -21,63 +21,49 @@ import weapon.Weapon;
  * <hr>
  * @author Carlton Robert
  */
-public class Player {
-	
-	private String name;
-	private int health;
-	private Weapon weapon;
-	private int location;
+public class Player extends Participant
+{
+	private Weapon weapon;		//currently held weapon
+	private int location;		//current position
 
 	/**
 	 * 
-	 *Base Constructor        
+	 *Default Constructor        
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
 	 *
 	 *
 	 */
-	public Player() {
-		health = 100;
-		weapon = new Weapon();
-		location = 1;
-		name = "Adventurer";
-	}//end of Player()
+	public Player() 
+	{
+		super();
+		this.weapon = new Fist();
+		this.location = 0;
+	}
 	
 	
 	/**
-	 *Copy Constructor        
+	 * 
+	 * Parameterized Constructor of Player   
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
 	 *
 	 * 
-	 * @param health
-	 * @param weapon
-	 * @param location
+	 * @param name - name of player
+	 * @param health - health of player
+	 * @param weapon - player's weapon
+	 * @param location - player's location
 	 */
-	public Player(int health, Weapon weapon, int location, String name)
+	public Player(String name, int health, Weapon weapon, int location)
 	{
-		this.health = health;
+		super(name, health);
 		this.weapon = weapon;
 		this.location = location;
-		this.name = name;
 	}
 	
-	
-	/**
-	 * Holds what weapon is held         
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018
-	 *
-	 * <hr>
-	 * @param newWeapon
-	 */
-	public void pickUpWeapon(Weapon newWeapon)
-	{
-		//Code for picking up weapon
-	}
 	
 	/**
 	 * Holds the movement for the player        
@@ -86,8 +72,6 @@ public class Player {
 	 * Date created: Nov 11, 2018
 	 *
 	 * <hr>
-	 * @param direction
-	 * @param mapSize
 	 */
 	public void move(String direction)
 	{
@@ -95,27 +79,7 @@ public class Player {
 			location--;
 		else if(direction.equalsIgnoreCase ("Right"))
 			location++;
-	}//end of move(String direction)
-
-	
-	/**
-	 * @return health
-	 */
-	public int getHealth ( )
-	{
-		return health;
-	}//end of gethealth()
-
-
-	
-	/**
-	 * @param health the health to set
-	 */
-	public void setHealth (int health)
-	{
-		this.health = health;
-	}//end of setHealth (int health)
-
+	}
 
 	
 	/**
@@ -124,7 +88,7 @@ public class Player {
 	public Weapon getWeapon ( )
 	{
 		return weapon;
-	}//end of getWeapon()
+	}
 
 
 	
@@ -134,7 +98,7 @@ public class Player {
 	public void setWeapon (Weapon weapon)
 	{
 		this.weapon = weapon;
-	}//end of setWeapon (Weapon weapon)
+	}
 
 
 	
@@ -144,7 +108,7 @@ public class Player {
 	public int getLocation ( )
 	{
 		return location;
-	}//end of getLocation()
+	}
 
 
 	
@@ -154,15 +118,7 @@ public class Player {
 	public void setLocation (int location)
 	{
 		this.location = location;
-	}//end of setLocation(int location)
-	
-	/**
-	 * @return name
-	 */
-	public String getName()
-	{
-		return name;
-	}//end of getName()
+	}
 
 
-}//end of Player()
+}

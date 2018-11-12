@@ -21,30 +21,19 @@ package entity;
  */
 public class BlackSnake extends Monster 
 {
-
-
-	
-	
 	/**
-	 *Base Constructor        
+	 * 
+	 * Default Constructor of BlackSnake   
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
 	 *
-	 * 
-	 * @param health
-	 * @param damage
-	 * @param accuracy
-	 * @param name
+	 *
 	 */
-	public BlackSnake() {
+	public BlackSnake() 
+	{
+		super("Black Snake", 20, 35, 0.55);
+	}
 
-		super();
-		name = "Black Snake";
-		this.damage = 35;
-		this.health = 20;
-		this.accuracy = 0.55;
-	}//end BlackSnake()
-	
-
-}//end BlackSnake()
+}

@@ -23,21 +23,19 @@ public class Fist extends Weapon {
 
 	/**
 	 * 
-	 * Constructor        
+	 * Default Constructor of Fist   
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
 	 *
 	 *
 	 */
-	public Fist() {
-		super();
-		name = "fist";
-		damage = 5;
-		accuracy = 0.80;
-		
-	}//end of Fist()
+	public Fist() 
+	{
+		super("Fist", 5, 0.80);
+	}
 
 	
 
-}//end of Fist()
+}

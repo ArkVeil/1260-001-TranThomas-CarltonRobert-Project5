@@ -42,10 +42,29 @@ public class Room
 	{
 		this.roomType = RoomType.START;
 		this.occupied = true;
+		this.explored = false;
 		this.roomIcon = " [x]-";
 		
 	}
 	
+	/**
+	 * 
+	 * Parameterized Constructor of Room   
+	 *
+	 * <hr>
+	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
+	 *
+	 * 
+	 * @param roomType
+	 */
+	public Room(String roomType, boolean occupied, boolean explored)
+	{
+		this.roomType = RoomType.valueOf (roomType);
+		this.occupied = occupied;
+		this.explored = explored;
+		this.roomIcon = this.determineIcon();
+	}
 	
 	/**
 	 * @return occupied
@@ -62,24 +81,6 @@ public class Room
 	protected void setOccupied (boolean occupied)
 	{
 		this.occupied = occupied;
-	}
-
-	/**
-	 * 
-	 * Parameterized Constructor of Room   
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018 
-	 * Last Modified: Nov 11, 2018
-	 *
-	 * 
-	 * @param roomType
-	 */
-	public Room(String roomType, boolean occupied)
-	{
-		this.roomType = RoomType.valueOf (roomType);
-		this.occupied = occupied;
-		this.roomIcon = this.determineIcon();
 	}
 
 	/**

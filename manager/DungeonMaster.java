@@ -11,9 +11,7 @@
 package manager;
 
 import java.util.Random;
-import javax.swing.JOptionPane;
 import entity.*;
-import weapon.*;
 
 
 /**
@@ -26,7 +24,9 @@ import weapon.*;
  */
 public class DungeonMaster 
 {
-	protected static boolean dead = false;
+	protected static boolean dead = false;			//check if player has died
+	protected static boolean cleared = false;		//check if dungeon has been cleared
+	
 	/**
 	 * 
 	 * Main game play loop; tracks whether the game is still running and initiates combat if needed          
@@ -37,96 +37,39 @@ public class DungeonMaster
 	 *
 	 * <hr>
 	 */
-	public static void runPlayLoop()
+	public static String checkForWeapon(Player player)
 	{
-		Random randomEncounter = new Random();			//random generator
-		boolean gameRun = true;			//tracks if the game is running
-		int mobSpawn = 0;					//tracks what mob was spawned
-		int directionButton = 2;		//player movement input
-		int quitButton = 0;				//tracks if player wants to quit
+		Random randomEncounter = new Random();	//random generator
 		
-		Weapon[] armory = {	new Fist(),
-							new Stick(),
-							new Sword(),
-							new Scimitar()};		//list of available weapons
-		
-		Monster[] mob = {	new BlackSnake(),
-							new GiantSpider(),
-							new Slime()};			//list of available monsters
-		
-		String[] movement = {"Left", "Right"};		//movement buttons
-		String[] quit = {"Yes", "No"};				//quit buttons
-		
-		Player player = new Player(100, armory[0], 0, "Adventurer");
-		
-		Cartographer.generateMap();
-	
-		while(gameRun)
+		String eventLog = "";					//Event output
+			
+		if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
 		{
-			Cartographer.updateMap (player.getLocation ( ),directionButton);
-			directionButton = JOptionPane.showOptionDialog (null, 
-											Cartographer.mapData+ "\n\n", 
-											"Where do you want to go",
-											JOptionPane.PLAIN_MESSAGE,
-											JOptionPane.DEFAULT_OPTION,
-											null, 
-											movement,
-											0);
-			
-			//determines movement
-			switch(directionButton)
+			if(randomEncounter.nextInt(10000) < 2000)
 			{
-				case 0:
-					if(player.getLocation ( ) != 0)
-						player.move (movement[directionButton]);
-					else
-						JOptionPane.showMessageDialog (null, "You can't go that way", null, JOptionPane.PLAIN_MESSAGE);
-					break;
-				case 1:
-					if(player.getLocation ( ) < Cartographer.roomCount-1)
-						player.move (movement[directionButton]);
-					else
-					{
-						JOptionPane.showMessageDialog (null, "You have escaped and completed the dungeon!", null, JOptionPane.PLAIN_MESSAGE);
-						gameRun = false;
-					}
-					break;
-				default:
-					 quitButton = JOptionPane.showOptionDialog (null, 
-						 "Are you sure you want to quit?", 
-						null,
-						JOptionPane.PLAIN_MESSAGE,
-						JOptionPane.DEFAULT_OPTION,
-						null, 
-						quit,
-						0);
-					 switch(quitButton)
-					 {
-						 case 0:
-							 JOptionPane.showMessageDialog (null, 
-								 	"Goodbye, thank you for playing\nBy Thomas Tran and Robert Carlton",
-									":(",
-									JOptionPane.PLAIN_MESSAGE);
-							 System.exit (-1);
-						 case 1:
-						 default:
-							 break; 
-					 }//end switch(quitButton)
-			}//end switch(directionButton)
+				eventLog = "Weapon";
+			}
+		}
+		return eventLog;
+	}
+		
+	public static String checkForMob(Player player)
+		{
+			Random randomEncounter = new Random();	//random generator
 			
+			String eventLog = "";					//Event output
+					
 			if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
 			{
-				if(randomEncounter.nextInt (10000) < 10000)
+
+				if(randomEncounter.nextInt (10000) < 5000)
 				{
-					mobSpawn = randomEncounter.nextInt(mob.length);
-					System.out.println ("A " + mob[mobSpawn] + " stands before you");
-					System.out.print (combat(player, mob[mobSpawn]));
-				}//end of if(randomEncounter.nextInt (10000) < 10000)
-			}//end of if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
-			
-			
-		}//end while(gamerun)
-		
+					eventLog = "Mob";
+				}
+
+			}
+
+		return eventLog;
 	}//end runPlayLoop()
 
 	/**
@@ -136,8 +79,8 @@ public class DungeonMaster
 	 * Date created: Nov 11, 2018
 	 *
 	 * <hr>
-	 * @param player - player to hold the combat stats
-	 * @param mob - holds the combat related stats for whatever monster is up for battle
+	 * @param player - player entity
+	 * @param mob - player's opponent
 	 */
 	public static String combat(Player player, Monster mob)
 	{
@@ -149,6 +92,8 @@ public class DungeonMaster
 		int playerDmg =  player.getWeapon ( ).getDamage ( );
 		int mobDmg = mob.getDamage ( );
 		
+		if(player.getHealth ( ) <= 0)
+			fighting = false;
 		while(fighting)
 		{
 			//player attacks
@@ -159,8 +104,13 @@ public class DungeonMaster
 			}
 			else
 				combatLog += "You miss!\n";
-			//end of if( ran.nextInt(10000) < player.getWeapon().getAccuracy() * 10000)
 			
+			if(tempEnemyHealth <= 0)
+			{
+				combatLog += "\nYou have defeated the " + mob.getName ( ) + " with " + tempPlayerHealth + " HP remaining!";
+				player.setHealth (tempPlayerHealth);
+				break;
+			}
 			//monster attacks
 			if ( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
 			{
@@ -169,23 +119,64 @@ public class DungeonMaster
 			}
 			else
 				combatLog += "The " + mob.getName ( ) + " misses!\n";
-			//end of if	( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
-			
+				
 			if(tempPlayerHealth <= 0)
 			{
 				dead = true;
-				combatLog = "\tGAME OVER\nYou have died";
+				combatLog = "\tGAME OVER\nYou have died\nProgrammed by Thomas Tran and Robert Carlton";
 				fighting = false;
-			}//end of if(tempPlayerHealth <= 0)
+			}
 			else if(tempEnemyHealth <= 0)
 			{
 				combatLog += "\nYou have defeated the " + mob.getName ( ) + " with " + tempPlayerHealth + " HP remaining!";
 				player.setHealth (tempPlayerHealth);
 				fighting = false;
-			}//end of else if(tempEnemyHealth <= 0)
-		}//end of while(fighting)
-		
-		
+			}
+		}
 		return combatLog;
-	}//end of combatPlayer(Player player, Monster mob)
-}//end of DungeonMaster()
+		
+	}
+	
+	public static String move(Player player, int direction)
+	{
+		String[] movement = {"Left", "Right"};			//Available Movements
+		String result = "";								//results of attempted movement;
+	
+		//determines movement
+		switch(direction)
+		{
+			case 0:
+				if(player.getLocation ( ) != 0)
+				{
+					Cartographer.dungeonData[player.getLocation()].setExplored (true);
+					Cartographer.dungeonData[player.getLocation()].setOccupied (false);
+					player.move (movement[direction]);
+					Cartographer.dungeonData[player.getLocation()].setOccupied (true);
+				}
+				else
+					result = "You can't go that way";
+				break;
+			case 1:
+				if(player.getLocation ( ) < Cartographer.roomCount-1 && player.getLocation ( ) >= 0 )
+				{
+					Cartographer.dungeonData[player.getLocation()].setExplored (true);
+					Cartographer.dungeonData[player.getLocation()].setOccupied (false);
+					player.move (movement[direction]);
+					Cartographer.dungeonData[player.getLocation()].setOccupied (true);
+				}
+				else
+				{
+					result = "You have escaped and completed the dungeon!";
+					cleared = true;
+				}
+				break;
+			default:
+				result = "Quit";
+			
+		}//end switch(directionButton)
+		
+		return result;
+	}//end move(Player, int)
+	
+	
+}

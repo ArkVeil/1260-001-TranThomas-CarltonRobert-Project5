@@ -36,6 +36,6 @@ public class Scimitar extends Weapon {
 		this.name = "Scimitar";
 		this.damage = 15;
 		this.accuracy = 0.90;
-	}//end of Scimitar()
+	}
 
-}//end of Scimitar()
+}

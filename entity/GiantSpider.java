@@ -23,25 +23,17 @@ public class GiantSpider extends Monster {
 
 	/**
 	 * 
-	 * Base Constructor        
+	 * Default Constructor of GiantSpider   
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
 	 *
-	 * 
-	 * @param health
-	 * @param damage
-	 * @param accuracy
-	 * @param name
+	 *
 	 */
-	public GiantSpider() {
+	public GiantSpider() 
+	{
+		super("Giant Spider", 10, 10, 0.50);
+	}
 
-		super();
-		name = "Giant Spider";
-		this.damage = 10;
-		this.health = 10;
-		this.accuracy = 0.50;
-	}//end of GiantSpider()
-
-
-}//end of GiantSpider()
+}

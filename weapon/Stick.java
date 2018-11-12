@@ -36,6 +36,6 @@ public class Stick extends Weapon {
 		name = "Stick";
 		damage = 8;
 		accuracy = 0.75;
-	}//end of Stick()
+	}
 
-}//end of Stick();
+}

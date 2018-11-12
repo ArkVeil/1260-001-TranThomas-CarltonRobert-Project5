@@ -21,9 +21,9 @@ package weapon;
  */
 public class Weapon {
     
-    protected String name; 			//name for the weapon
-    protected int damage;			//damage value to lower enemy health
-    protected double accuracy;		//the percent that the weapon will hit
+    protected String name;				//name of weapon
+    protected int damage;				//weapon's damage
+    protected double accuracy;			//hit rate of weapon
 
     /**
      * 
@@ -34,19 +34,32 @@ public class Weapon {
      *
      *
      */
-    public Weapon() {
-        // TODO Auto-generated constructor stub
-        name = "fist";
-        damage = 1;
-        accuracy = 1.0;
-    }//end of Weapon()s
+    public Weapon() 
+    {
+        this.name = "fist";
+        this.damage = 1;
+        this.accuracy = 1.0;
+    }
 
+    /**
+     * 
+     * Parameterized Constructor of Weapon   
+     *
+     * <hr>
+     * Date created: Nov 11, 2018 
+     * Last Modified: Nov 11, 2018
+     *
+     * 
+     * @param name - name of weapon
+     * @param damage - damage of weapon
+     * @param accuracy - hit rate of weapon
+     */
     public Weapon(String name, int damage, double accuracy)
     {
         this.name = name;
         this.damage = damage;
         this.accuracy = accuracy;
-    }//end of Weapon(String name, int damage, double accuracy)
+    }
     
     /**
      * @return damage
@@ -54,7 +67,7 @@ public class Weapon {
     public int getDamage ( )
     {
         return damage;
-    }//end of getDamage()
+    }
 
     
     /**
@@ -63,7 +76,7 @@ public class Weapon {
     public String getName ( )
     {
         return name;
-    }//end of getName()
+    }
 
     
     /**
@@ -72,7 +85,7 @@ public class Weapon {
     public double getAccuracy ( )
     {
         return accuracy;
-    }//end of getAccuracy()
+    }
 
 
-}//end of Weapon()
+}

@@ -30,22 +30,6 @@ public class Cartographer
 	protected static int roomCount;
 	
 	/**
-	 * Constructor of Cartographer   
-	 *
-	 * <hr>
-	 * Date created: Nov 11, 2018 
-	 * Last Modified: Nov 11, 2018
-	 *
-	 * 
-	 */
-	public Cartographer ( )
-	{
-		mapData = "";
-		roomCount = 0;
-		
-	}
-
-	/**
 	 * Updates and displays the map data        
 	 *
 	 * <hr>
@@ -53,22 +37,10 @@ public class Cartographer
 	 *
 	 * <hr>
 	 */
-	public static void updateMap(int playerLocation, int direction)
+	public static void updateMap()
 	{
 		mapData = "";
-		dungeonData[playerLocation].setOccupied (true);
-		if(playerLocation > 0 && direction == 1)
-		{
-			dungeonData[playerLocation-1].setOccupied (false);
-			dungeonData[playerLocation-1].setExplored (true);
-		}
-		else if(playerLocation < roomCount -1 && direction == 0)
-		{
-			dungeonData[playerLocation+1].setOccupied (false);
-			dungeonData[playerLocation+1].setExplored (true);
-		}
-		
-		for(Room r : dungeonData)
+		for(Room r: dungeonData)
 		{
 			mapData += r.getRoomIcon ( );
 		}
@@ -93,11 +65,11 @@ public class Cartographer
 		for(int i = 0; i < roomCount ; i++)
 		{
 			if(i == 0)
-				dungeonData[0] = new Room("START", true);
+				dungeonData[0] = new Room("START", true, true);
 			else if(i == roomCount-1)
-				dungeonData[roomCount-1] = new Room("EXIT", false);
+				dungeonData[roomCount-1] = new Room("EXIT", false, false);
 			else
-				dungeonData[i] = new Room("PASSAGE", false);
+				dungeonData[i] = new Room("PASSAGE", false, false);
 		}
 		
 	}

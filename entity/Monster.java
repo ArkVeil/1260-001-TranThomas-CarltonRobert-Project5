@@ -18,76 +18,56 @@
  * <hr>
  * @author Carlton Robert
  */
-public class Monster {
+public class Monster extends Participant
+{
 	
-	protected String name;
-	protected int health;
-	protected int damage;
-	protected double accuracy;
+	public int damage;
+	public double accuracy;
 
 	/**
 	 * 
-	 * Constructor        
+	 * Default Constructor of Monster   
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
 	 *
-	 * 
-	 * @param health
-	 * @param damage
-	 * @param accuracy
+	 *
 	 */
 	public Monster()
 	{
-		this.name = "";
-		this.health = 1;
+		super();
 		this.damage = 0;
 		this.accuracy = 0.0;
-	}//end of Monster()
+	}
 	
 	/**
-	 * @return name
+	 * 
+	 * Parameterized Constructor of Monster   
+	 *
+	 * <hr>
+	 * Date created: Nov 11, 2018 
+	 * Last Modified: Nov 11, 2018
+	 *
+	 * 
+	 * @param name - monster's name
+	 * @param health - monster's health
+	 * @param damage - monster's damage
+	 * @param accuracy - monster's accuracy
 	 */
-	public String getName ( )
+	public Monster(String name, int health, int damage, double accuracy)
 	{
-		return name;
-	}//end of getName()
-
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName (String name)
-	{
-		this.name = name;
-	}//end of setName (String name)
-
-	
-	/**
-	 * @return health
-	 */
-	public int getHealth ( )
-	{
-		return health;
-	}//end of getHealth()
-
-	
-	/**
-	 * @param health the health to set
-	 */
-	public void setHealth (int health)
-	{
-		this.health = health;
-	}//end of setHealth (int health)
-
-	
+		super(name, health);
+		this.damage = 0;
+		this.accuracy = 0.00;
+	}
 	/**
 	 * @return damage
 	 */
 	public int getDamage ( )
 	{
 		return damage;
-	}//end of getDamage ( )
+	}
 
 	
 	/**
@@ -96,7 +76,7 @@ public class Monster {
 	public void setDamage (int damage)
 	{
 		this.damage = damage;
-	}//end of setDamage (int damage)
+	}
 
 	
 	/**
@@ -105,7 +85,7 @@ public class Monster {
 	public double getAccuracy ( )
 	{
 		return accuracy;
-	}//end of double getAccuracy ( )
+	}
 
 	
 	/**
@@ -114,6 +94,6 @@ public class Monster {
 	public void setAccuracy (double accuracy)
 	{
 		this.accuracy = accuracy;
-	}//end of setAccuracy(double accuracy)
+	}
 
-}//end of Monster()
+}
