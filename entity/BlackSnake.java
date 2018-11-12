@@ -21,8 +21,8 @@ package entity;
  */
 public class BlackSnake extends Participant 
 {
-	public int damage;			//monster damage
-	public double accuracy;		//monster hit rate
+	private int damage;			//monster damage
+	private double accuracy;		//monster hit rate
 	
 	/**
 	 * 

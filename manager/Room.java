@@ -24,7 +24,7 @@ package manager;
  */
 public class Room
 {
-	protected RoomType roomType;		//room type @see RoomType.java
+	private RoomType roomType;			//room type @see RoomType.java
 	private String roomIcon;			//displayable icon for room
 	private boolean occupied;			//if player is here
 	private boolean explored;			//if player has been here

@@ -23,8 +23,8 @@ package entity;
 public class Slime extends Participant
 {
 
-	public int damage;			//monster damage
-	public double accuracy;		//monster hit rate
+	private int damage;			//monster damage
+	private double accuracy;		//monster hit rate
 	/**
 	 * 
 	 * Default Constructor of Slime   

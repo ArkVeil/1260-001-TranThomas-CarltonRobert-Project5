@@ -66,12 +66,15 @@ public class Player extends Participant
 	
 	
 	/**
-	 * Holds the movement for the player        
+	 * 
+	 * Changes location based on direction given        
 	 *
 	 * <hr>
 	 * Date created: Nov 11, 2018
+	 * Last Modified: Nov 11, 2018
 	 *
 	 * <hr>
+	 * @param direction - direction of movement
 	 */
 	public void move(String direction)
 	{

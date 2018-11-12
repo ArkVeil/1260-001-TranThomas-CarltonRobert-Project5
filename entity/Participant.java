@@ -24,8 +24,8 @@ package entity;
  */
 public abstract class Participant
 {
-	public String name;		//name of Participant
-	public int health;		//Participant health
+	protected String name;		//name of Participant
+	protected int health;		//Participant health
 	
 	/**
 	 * Default Constructor of Participant   
