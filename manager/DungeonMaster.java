@@ -121,8 +121,8 @@ public class DungeonMaster
 					mobSpawn = randomEncounter.nextInt(mob.length);
 					System.out.println ("A " + mob[mobSpawn] + " stands before you");
 					System.out.print (combat(player, mob[mobSpawn]));
-				}
-			}
+				}//end of if(randomEncounter.nextInt (10000) < 10000)
+			}//end of if(Cartographer.dungeonData[player.getLocation ( )].isExplored ( )==false)
 			
 			
 		}//end while(gamerun)
@@ -136,8 +136,8 @@ public class DungeonMaster
 	 * Date created: Nov 11, 2018
 	 *
 	 * <hr>
-	 * @param player
-	 * @param mob
+	 * @param player - player to hold the combat stats
+	 * @param mob - holds the combat related stats for whatever monster is up for battle
 	 */
 	public static String combat(Player player, Monster mob)
 	{
@@ -159,6 +159,7 @@ public class DungeonMaster
 			}
 			else
 				combatLog += "You miss!\n";
+			//end of if( ran.nextInt(10000) < player.getWeapon().getAccuracy() * 10000)
 			
 			//monster attacks
 			if ( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
@@ -168,22 +169,23 @@ public class DungeonMaster
 			}
 			else
 				combatLog += "The " + mob.getName ( ) + " misses!\n";
-				
+			//end of if	( ran.nextInt(10000) < mob.getAccuracy ( ) * 10000)
+			
 			if(tempPlayerHealth <= 0)
 			{
 				dead = true;
 				combatLog = "\tGAME OVER\nYou have died";
 				fighting = false;
-			}
+			}//end of if(tempPlayerHealth <= 0)
 			else if(tempEnemyHealth <= 0)
 			{
 				combatLog += "\nYou have defeated the " + mob.getName ( ) + " with " + tempPlayerHealth + " HP remaining!";
 				player.setHealth (tempPlayerHealth);
 				fighting = false;
-			}
-		}
+			}//end of else if(tempEnemyHealth <= 0)
+		}//end of while(fighting)
 		
 		
 		return combatLog;
-	}
-}
+	}//end of combatPlayer(Player player, Monster mob)
+}//end of DungeonMaster()

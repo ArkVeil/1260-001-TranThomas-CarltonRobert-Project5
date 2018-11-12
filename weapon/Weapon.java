@@ -21,9 +21,9 @@ package weapon;
  */
 public class Weapon {
     
-    protected String name;
-    protected int damage;
-    protected double accuracy;
+    protected String name; 			//name for the weapon
+    protected int damage;			//damage value to lower enemy health
+    protected double accuracy;		//the percent that the weapon will hit
 
     /**
      * 
@@ -39,14 +39,14 @@ public class Weapon {
         name = "fist";
         damage = 1;
         accuracy = 1.0;
-    }
+    }//end of Weapon()s
 
     public Weapon(String name, int damage, double accuracy)
     {
         this.name = name;
         this.damage = damage;
         this.accuracy = accuracy;
-    }
+    }//end of Weapon(String name, int damage, double accuracy)
     
     /**
      * @return damage
@@ -54,7 +54,7 @@ public class Weapon {
     public int getDamage ( )
     {
         return damage;
-    }
+    }//end of getDamage()
 
     
     /**
@@ -63,7 +63,7 @@ public class Weapon {
     public String getName ( )
     {
         return name;
-    }
+    }//end of getName()
 
     
     /**
@@ -72,7 +72,7 @@ public class Weapon {
     public double getAccuracy ( )
     {
         return accuracy;
-    }
+    }//end of getAccuracy()
 
 
-}
+}//end of Weapon()

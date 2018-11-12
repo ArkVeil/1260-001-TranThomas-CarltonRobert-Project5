@@ -30,6 +30,6 @@ public class Sword extends Weapon {
 		name = "fist";
 		damage = 5;
 		accuracy = 0.85;
-	}
+	}//end of sword()
 
-}
+}//end of sword()

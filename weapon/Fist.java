@@ -36,8 +36,8 @@ public class Fist extends Weapon {
 		damage = 5;
 		accuracy = 0.80;
 		
-	}
+	}//end of Fist()
 
 	
 
-}
+}//end of Fist()

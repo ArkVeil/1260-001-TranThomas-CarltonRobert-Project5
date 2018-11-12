@@ -95,7 +95,7 @@ public class Player {
 			location--;
 		else if(direction.equalsIgnoreCase ("Right"))
 			location++;
-	}
+	}//end of move(String direction)
 
 	
 	/**
@@ -104,7 +104,7 @@ public class Player {
 	public int getHealth ( )
 	{
 		return health;
-	}
+	}//end of gethealth()
 
 
 	
@@ -114,7 +114,7 @@ public class Player {
 	public void setHealth (int health)
 	{
 		this.health = health;
-	}
+	}//end of setHealth (int health)
 
 
 	
@@ -124,7 +124,7 @@ public class Player {
 	public Weapon getWeapon ( )
 	{
 		return weapon;
-	}
+	}//end of getWeapon()
 
 
 	
@@ -134,7 +134,7 @@ public class Player {
 	public void setWeapon (Weapon weapon)
 	{
 		this.weapon = weapon;
-	}
+	}//end of setWeapon (Weapon weapon)
 
 
 	
@@ -156,6 +156,9 @@ public class Player {
 		this.location = location;
 	}//end of setLocation(int location)
 	
+	/**
+	 * @return name
+	 */
 	public String getName()
 	{
 		return name;

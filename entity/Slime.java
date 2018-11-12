@@ -41,6 +41,6 @@ public class Slime extends Monster {
 		this.damage = 10;
 		this.health = 10;
 		this.accuracy = 1;
-	}
+	}//end of Slime()
 
-}
+}//end of Slime()
